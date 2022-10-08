@@ -28,10 +28,11 @@ export class AuthController {
     @Body() dto: AuthDto,
     @Res({ passthrough: true }) res: Response,
   ): Promise<Msg> {
+    // cookieの値にjwtのアクセストークンを設定する
     const jwt = await this.authService.login(dto);
     res.cookie('access_token', jwt.accessToken, {
       httpOnly: true,
-      secure: true,
+      secure: false, // trueにするとhttpsのみ可能
       sameSite: 'none',
       path: '/',
     });
@@ -39,23 +40,6 @@ export class AuthController {
       message: 'ok',
     };
   }
-
-  // ステータスコードを200にする
-  // @HttpCode(HttpStatus.OK)
-  // @Post('login')
-  // async login(@Body() dto: AuthDto, @Res({ passthrough: true }) res: Response) {
-  //   // cookieの値にjwtのアクセストークンを設定する
-  //   const jwt = await this.authService.login(dto);
-  //   res.cookie('access_token', jwt.accessToken, {
-  //     httpOnly: true,
-  //     secure: true,
-  //     sameSite: 'none',
-  //     path: '/',
-  //   });
-  //   return {
-  //     message: 'ok',
-  //   };
-  // }
 
   @HttpCode(HttpStatus.OK)
   @Post('/logout')

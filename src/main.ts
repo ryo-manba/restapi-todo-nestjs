@@ -7,6 +7,7 @@ import * as csurf from 'csurf';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // whitelistをtrueにすることで,dtoに含まれていない属性を省く
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.enableCors({
     // cookieベースでJWTトークンを通信する

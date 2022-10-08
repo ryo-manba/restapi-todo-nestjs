@@ -1,3 +1,4 @@
+// serviceやcontrollerで使う型
 export interface Msg {
   message: string;
 }

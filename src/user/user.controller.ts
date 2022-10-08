@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from '@prisma/client';
 
-// 認証関係のプロテクトが入っている
+// UseGuardsでエンドポイントをガードする
 @UseGuards(AuthGuard('jwt'))
 @Controller('user')
 export class UserController {
