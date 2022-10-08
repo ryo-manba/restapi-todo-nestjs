@@ -22,7 +22,7 @@ async function bootstrap() {
       cookie: {
         httpOnly: true,
         sameSite: 'none',
-        secure: false,
+        secure: true,
       },
       value: (req: Request) => {
         // クライアントからヘッダーで受け取ったcsrf-tokenを渡す
