@@ -13,7 +13,10 @@ async function bootstrap() {
     // cookieベースでJWTトークンを通信する
     credentials: true,
     // Reactのドメインからのアクセスを許可する
-    origin: ['http://localhost:3000'],
+    origin: [
+      'http://localhost:3000',
+      'https://frontend-todo-nextjs-sigma.vercel.app',
+    ],
   });
   app.use(cookieParser());
   app.use(
